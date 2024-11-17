@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rez Searcher</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    // Disable text selection
+    document.addEventListener('selectstart', function(e) {
+      e.preventDefault();
+    });
+
+    // Disable right-click context menu
+    document.addEventListener('contextmenu', function(e) {
+      e.preventDefault();
+    });
+  </script>
+</head>
+<body class="dark-mode">
+  <div id="warning-modal" class="warning-modal">
+    <div class="modal-content">
+      <h2>⚠️ Warning ⚠️</h2>
+      <p>Due to a spike in malicious scripts, we ask you to think twice before executing anything. If something appears too good to be true, it most likely is. Always test on an alt!</p>
+      <button id="ok-button" class="button">Okay</button>
+    </div>
+  </div>
+  <main class="container">
+    <div class="powered-by">Powered by <a href="https://scriptblox.com" target="_blank">scriptblox.com</a></div>
+    <section class="search-section">
+      <form id="search-form" class="search-form">
+        <div class="form-group">
+          <input class="input" type="text" id="search-input" placeholder="Search Script...">
+        </div>
+        <button class="button search-button" type="submit">Search</button>
+      </form>
+    </section>
+    <section class="results-section">
+      <div class="results" id="results">
+        <!-- Example script cards -->
+        <div class="script-card">
+          <img src="example.jpg" alt="Script Image">
+          <div class="script-content-container">
+            <div class="script-title">Script Title</div>
+            <div class="script-game">Game Name</div>
+            <button class="copy-button">Copy</button>
+          </div>
+        </div>
+        <!-- Add more script cards as needed -->
+      </div>
+      <button class="button load-more-button" id="load-more">Load More</button>
+      <div id="loading-message" style="display: none; color: #ffffff; text-align: center; margin-top: 1rem;">Loading...</div>
+    </section>
+  </main>
+  <script src="script.js"></script>
+  <script>
+    // Check if the warning has been shown before
+    if (!localStorage.getItem('warningShown')) {
+      document.getElementById('warning-modal').style.display = 'flex'; // Show the modal
+    }
+
+    // Add event listener to the OK button
+    document.getElementById('ok-button').addEventListener('click', function() {
+      // Apply fade-out animation
+      document.getElementById('warning-modal').style.animation = 'fadeOut 0.5s forwards'; // Start fade-out
+
+      // Wait for the animation to finish before hiding the modal
+      setTimeout(function() {
+        document.getElementById('warning-modal').style.display = 'none'; // Hide the modal
+      }, 500); // Match the duration of the fade-out animation
+      localStorage.setItem('warningShown', 'true'); // Set item in local storage
+    });
+
+    // Load More button functionality
+    document.getElementById('load-more').addEventListener('click', function() {
+      // Show loading message
+      document.getElementById('loading-message').style.display = 'block';
+      this.style.display = 'none'; // Hide the Load More button
+
+      // Simulate loading more content (you can replace this with your actual loading logic)
+      setTimeout(function() {
+        // Here you would typically fetch and append new content
+        // For demonstration, we'll just hide the loading message after 2 seconds
+        document.getElementById('loading-message').style.display = 'none';
+        document.getElementById('load-more').style.display = 'block'; // Show the Load More button again
+      }, 2000); // Simulate a 2-second loading time
+    });
+  </script>
+</body>
+</html>
