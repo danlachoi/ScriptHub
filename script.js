@@ -27,12 +27,12 @@ document.addEventListener('DOMContentLoaded', () => {
         currentPage = page;
         loadMoreButton.style.display = currentPage < data.result.totalPages ? 'block' : 'none';
       } else {
-        resultsDiv.innerHTML = '<p>No scripts found.</p>';
+        resultsDiv.innerHTML = '<p class="scripts-notfound" >No scripts found.</p>';
         loadMoreButton.style.display = 'none';
       }
     } catch (error) {
       console.error('Error fetching scripts:', error);
-      resultsDiv.innerHTML = '<p>An error occurred while fetching scripts.</p>';
+      resultsDiv.innerHTML = '<p class="scripts-notfound" >An error occurred while fetching scripts.</p>';
       loadMoreButton.style.display = 'none';
     }
   }
@@ -41,11 +41,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const scriptDiv = document.createElement('div');
     scriptDiv.classList.add('script-card');
 
+    // Use a default image if the game image URL is not available
     const imageSrc = script.game.imageUrl ? `https://scriptblox.com${script.game.imageUrl}` : './404.jpg';
-    const keyLink = script.key ? `<a href="${script.keyLink}" target="_blank" rel="noopener noreferrer">Get Key</a>` : 'No';
+    const keyLink = script.key ? `<a href="${script.keyLink}" class="get-key-button">Get Key</a>` : 'No Key Available';
 
     scriptDiv.innerHTML = `
-      <img src="${imageSrc}" alt="Game Image" onerror="this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFV_3fgSgibO5UnL_ydawji9oIAUr6NblpEw&s';" />
+      <img src="${imageSrc}" alt="Game Image" onerror="this.src='./404.jpg';" />
       <div class="script-content-container">
         <span class="script-game">${script.game.name}</span>
         <h3 class="script-title"><a rel="noopener noreferrer">${script.title}</a></h3>
