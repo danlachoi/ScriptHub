@@ -1,3 +1,4 @@
+/* Base Styles */
 * {
   margin: 0;
   padding: 0;
@@ -37,54 +38,56 @@ body {
 .input {
   width: 100%; /* Full width for responsiveness */
   max-width: 400px; /* Maximum width */
-  padding: 0.75rem; /* Reduced padding for smaller input */
+  padding: 0.75rem; 
   border: 1px solid #555;
   border-radius: 20px;
   background-color: #3a3a3a;
   color: #ffffff;
-  transition: border-color 0.3s;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Added box-shadow transition */
   text-align: center; /* Center text inside the input */
 }
 
 .input:focus {
   outline: none;
   border-color: #4d52ff;
+  box-shadow: 0 0 5px rgba(77, 82, 255, 0.5); /* Subtle glow effect */
 }
 
 .button {
-  background-color: #5e2a91; /* Darker purple */
-  font-size: 0.9rem; /* Smaller font size */
-  padding: 0.5rem 1rem; /* Smaller padding */
-  width: 100%; /* Full width for responsiveness */
-  max-width: 150px; /* Maximum width */
+  background-color: #5e2a91;
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem; 
+  width: 100%; 
+  max-width: 150px; 
   color: #fff;
   border: none;
-  border-radius: 15px; /* Slightly smaller corners */
+  border-radius: 15px;
   cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s; /* Removed box-shadow transition */
-  margin-top: 1rem; /* Space above the button */
+  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.2s ease-in-out;
+  margin-top: 1rem;
 }
 
 .button:hover {
-  background-color: #4c1f7a; /* Darker shade on hover */
-  transform: scale(1.05); /* Slightly larger on hover */
+  background-color: #4c1f7a; 
+  transform: scale(1.05);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4); /* Added shadow for depth */
 }
 
 .load-more-button {
-  background-color: #5e2a91; /* Darker purple */
+  background-color: #5e2a91; 
   color: #fff;
   border: none;
-  padding: 0.75rem 1.5rem; /* Increased padding for a better look */
-  border-radius: 15px; /* Rounded corners */
+  padding: 0.75rem 1.5rem; 
+  border-radius: 15px; 
   cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s; /* Smooth transition */
-  margin: 1.5rem auto; /* Center the button */
-  display: block; /* Make it a block element to center */
+  transition: background-color 0.3s ease, transform 0.2s ease; 
+  margin: 1.5rem auto; 
+  display: block; 
 }
 
 .load-more-button:hover {
-  background-color: #4c1f7a; /* Darker shade on hover */
-  transform: scale(1.05); /* Scale effect on hover */
+  background-color: #4c1f7a; 
+  transform: scale(1.05); 
 }
 
 .results {
@@ -95,30 +98,28 @@ body {
 }
 
 .script-card {
-  background: #242424; /* Darker background color for cards */
-  width: calc(30% - 20px); /* Responsive width */
+  background: #242424; 
+  width: calc(30% - 20px); 
   margin: 10px;
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, opacity 0.3s ease-in-out; 
   display: flex;
   flex-direction: column;
   color: #ffffff;
-  opacity: 0; /* Start hidden */
-  transform: translateY(20px); /* Start slightly lower */
-  animation: fadeInUp 0.5s forwards; /* Animation for appearance */
+  opacity: 0; 
+  transform: translateY(20px); 
+  animation: fadeInUp 0.5s forwards; 
 }
 
 .script-card:hover {
-  transform: scale(1.05); /* Scale effect on hover */
-  box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2); /* Enhanced shadow on hover */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 }
 
 @keyframes fadeInUp {
   to {
-    opacity: 1; /* Fully visible */
-    transform: translateY(0); /* Move to original position */
+    opacity: 1; 
+    transform: translateY(0); 
   }
 }
 
@@ -157,114 +158,171 @@ body {
 }
 
 .copy-button {
-  background-color: #5e2a91; /* Darker purple */
+  background-color: #5e2a91; 
   color: #fff;
   border: none;
   padding: 6px 8px;
-  border-radius: 15px; /* Smaller corners */
+  border-radius: 6px; 
   cursor: pointer;
-  transition: background-color 0.3s ease-in-out, transform 0.2s; /* Added transform transition */
+  transition: background-color 0.3s ease-in-out, transform 0.2s; 
   margin-top: auto;
   align-self: flex-end;
 }
 
 .copy-button:hover {
-  background-color: #4c1f7a; /* Darker shade on hover */
-  transform: scale(1.05); /* Scale effect on hover */
+  background-color: #4c1f7a; 
 }
 
 @media only screen and (max-width: 900px) {
   .script-card {
-    width: calc(45% - 20px); /* Adjust width for medium screens */
+    width: calc(45% - 20px); 
   }
 }
 
 @media only screen and (max-width: 600px) {
   .script-card {
-    width: calc(100% - 20px); /* Full width for small screens */
+    width: calc(100% - 20px); 
   }
 }
 
 .powered-by {
-  position: absolute; /* Position it at the top left */
-  top: 1rem; /* Distance from the top */
-  left: 20px; /* Distance from the left */
-  font-size: 0.8rem; /* Smaller font size */
-  color: #aaaaaa; /* Light gray color */
-  opacity: 0; /* Start hidden */
-  transform: translateY(-10px); /* Start slightly higher */
-  animation: fadeInSlide 1s forwards; /* Fade-in and slide animation */
+  position: absolute; 
+  top: 1rem; 
+  left: 20px; 
+  font-size: 0.8rem; 
+  color: #aaaaaa; 
+  opacity: 0; 
+  transform: translateY(-10px); 
+  animation: fadeInSlide 1s ease forwards; 
 }
 
 .powered-by a {
-  color: #aaaaaa; /* Light gray color for the link */
-  text-decoration: none; /* Remove underline */
+  color: #aaaaaa; 
+  text-decoration: none; 
 }
 
 .powered-by a:hover {
-  text-decoration: underline; /* Underline on hover */
+  text-decoration: underline; 
 }
 
 @keyframes fadeInSlide {
   0% {
-    opacity: 0; /* Fully transparent */
-    transform: translateY(-10px); /* Start slightly higher */
+    opacity: 0; 
+    transform: translateY(-10px); 
+  }
+  50% {
+    opacity: 0.5; 
+    transform: translateY(5px); 
   }
   100% {
-    opacity: 1; /* Fully visible */
-    transform: translateY(0); /* Move to original position */
+    opacity: 1; 
+    transform: translateY(0); 
   }
 }
 
 .warning-modal {
-  display: flex; /* Center the modal */
+  display: flex; 
   justify-content: center;
   align-items: center;
-  position: fixed; /* Fixed position */
+  position: fixed; 
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.7); /* Dark semi-transparent background */
-  z-index: 1000; /* Ensure it appears above other content */
-  opacity: 0; /* Start hidden */
-  animation: fadeIn 0.5s forwards; /* Fade-in animation */
+  background-color: rgba(0, 0, 0, 0.7); 
+  z-index: 1000; 
+  opacity: 0; 
+  animation: fadeIn 0.5s ease forwards, slideIn 0.5s ease forwards; 
 }
 
 .modal-content {
-  background-color: #2a2a2a; /* Dark gray background */
-  border-radius: 5px; /* Rounded corners */
-  padding: 20px; /* Padding inside the modal */
-  text-align: center; /* Center text */
-  color: #ffffff; /* White text color */
-  max-width: 400px; /* Maximum width */
-  width: 90%; /* Responsive width */
-  transform: translateY(-20px); /* Start slightly higher */
-  animation: slideIn 0.5s forwards; /* Slide-in animation */
+  background-color: #2a2a2a; 
+  border-radius: 5px; 
+  padding: 20px; 
+  text-align: center; 
+  color: #ffffff; 
+  max-width: 400px; 
+  width: 90%; 
+  transform: translateY(-20px); 
+  animation: slideIn 0.5s forwards; 
 }
 
 @keyframes fadeIn {
   to {
-    opacity: 1; /* Fully visible */
+    opacity: 1; 
   }
 }
 
 @keyframes slideIn {
   0% {
-    opacity: 0; /* Fully transparent */
-    transform: translateY(-20px); /* Start slightly higher */
+    opacity: 0; 
+    transform: translateY(-20px); 
+  }
+  50% {
+    opacity: 0.5; 
+    transform: translateY(10px); 
   }
   100% {
-    opacity: 1; /* Fully visible */
-    transform: translateY(0); /* Move to original position */
+    opacity: 1; 
+    transform: translateY(0); 
   }
 }
 
 @keyframes fadeOut {
   0% {
-    opacity: 1; /* Fully visible */
+    opacity: 1; 
   }
   100% {
-    opacity: 0; /* Fully transparent */
+    opacity: 0; 
+    transform: translateY(-20px); 
+  }
+}
+
+.get-key-button {
+  background-color: #5e2a91; 
+  color: #fff;
+  border: none;
+  padding: 4px 6px; 
+  border-radius: 4px; 
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, transform 0.2s; 
+  margin-top: auto;
+  align-self: flex-end;
+  font-size: 0.8rem; 
+} 
+
+.get-key-button:hover {
+  background-color: #4c1f7a; 
+  transform: scale(1.05); 
+}
+
+.get-key-button:active {
+  transform: scale(0.95) rotate(-1deg); /* Slightly shrink and rotate on click */
+}
+
+.scripts-notfound {
+  font-size: 12px; /* Smaller font size */
+  font-weight: bold; /* Keep bold text */
+  background: #242424; /* Background color */
+  border-radius: 8px; /* Slightly smaller border radius */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); /* Reduced shadow */
+  padding: 15px; /* Smaller padding around text */
+  transition: transform 0.3s ease, font-size 0.3s ease; /* Smooth transition for scaling */
+}
+
+.scripts-notfound:hover {
+  transform: scale(1.05); /* Slightly smaller scale on hover */
+  font-size: 12px; /* Font size remains the same on hover */
+}
+
+.powered-by.hide {
+  opacity: 0; /* Full hiding */
+  transform: translateY(-10px); /* Move slightly up */
+}
+
+@media only screen and (max-width: 600px) {
+  .powered-by {
+    /* Here, instead of simply adjusting properties, we will add a class to hide it */
+    display: none; /* Or use .hide class instead */
   }
 }
