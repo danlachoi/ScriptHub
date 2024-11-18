@@ -44,6 +44,7 @@
             <div class="script-title">Script Title</div>
             <div class="script-game">Game Name</div>
             <button class="copy-button">Copy</button>
+            <a href="#" class="get-key-button">Get Key</a> <!-- Added Get Key button -->
           </div>
         </div>
         <!-- Add more script cards as needed -->
@@ -84,6 +85,22 @@
         document.getElementById('loading-message').style.display = 'none';
         document.getElementById('load-more').style.display = 'block'; // Show the Load More button again
       }, 2000); // Simulate a 2-second loading time
+
+
+      function checkScreenSize() {
+    const poweredBy = document.querySelector('.powered-by');
+    if (window.innerWidth <= 600) {
+        poweredBy.classList.add('hide'); // Add the hide class on small screens
+    } else {
+        poweredBy.classList.remove('hide'); // Remove the hide class on larger screens
+    }
+}
+
+// Initial check
+checkScreenSize();
+
+// Add event listener for screen resize
+window.addEventListener('resize', checkScreenSize);
     });
   </script>
 </body>
