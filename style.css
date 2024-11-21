@@ -36,21 +36,22 @@ body {
 }
 
 .input {
-  width: 100%; /* Full width for responsiveness */
-  max-width: 400px; /* Maximum width */
+  width: 100%; /* Полная ширина для адаптивности */
+  max-width: 400px; /* Максимальная ширина */
   padding: 0.75rem; 
   border: 1px solid #555;
   border-radius: 20px;
   background-color: #3a3a3a;
   color: #ffffff;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Added box-shadow transition */
-  text-align: center; /* Center text inside the input */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease; /* Плавный переход */
+  text-align: center; /* Центрирование текста внутри поля */
 }
 
 .input:focus {
-  outline: none;
-  border-color: #4d52ff;
-  box-shadow: 0 0 5px rgba(77, 82, 255, 0.5); /* Subtle glow effect */
+  outline: none; /* Убираем стандартный контур */
+  border-color: #4d52ff; /* Цвет границы при фокусе */
+  box-shadow: 0 0 8px rgba(77, 82, 255, 0.7); /* Эффект свечения */
+  transform: scale(1.02); /* Небольшое увеличение при фокусе */
 }
 
 .button {
@@ -324,5 +325,16 @@ body {
   .powered-by {
     /* Here, instead of simply adjusting properties, we will add a class to hide it */
     display: none; /* Or use .hide class instead */
+  }
+}
+
+.fade-in {
+  opacity: 0; /* Start fully transparent */
+  animation: fadeIn 1s forwards; /* Apply the fadeIn animation */
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1; /* End fully opaque */
   }
 }
