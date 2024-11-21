@@ -5,6 +5,55 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rez Searcher</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* Centering the Made by text */
+    .search-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* Center horizontally */
+      margin-top: 20px; /* Add some space above */
+    }
+
+    /* Fade-in animation */
+    .fade-in {
+      opacity: 0; /* Start fully transparent */
+      animation: fadeIn 1s forwards; /* Apply the fadeIn animation */
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.9); /* Start slightly smaller */
+      }
+      100% {
+        opacity: 1; /* End fully opaque */
+        transform: scale(1); /* End at normal size */
+      }
+    }
+
+    /* Styling for the Made by section */
+    .made-by {
+      color: #ffffff; /* White text for better contrast */
+      font-size: 1.2rem; /* Slightly larger font size */
+      text-align: center; /* Center text */
+      margin-top: 10px; /* Space above */
+      padding: 10px; /* Padding around the text */
+      border-radius: 5px; /* Rounded corners */
+      background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
+      transition: transform 0.3s; /* Smooth scaling on hover */
+    }
+
+    .made-by a {
+      color: #00bfff; /* Bright link color */
+      text-decoration: none; /* Remove underline */
+      font-weight: bold; /* Bold link text */
+    }
+
+    .made-by:hover {
+      transform: scale(1.05); /* Slightly enlarge on hover */
+    }
+  </style>
   <script>
     // Disable text selection
     document.addEventListener('selectstart', function(e) {
@@ -18,15 +67,8 @@
   </script>
 </head>
 <body class="dark-mode">
-  <div id="warning-modal" class="warning-modal">
-    <div class="modal-content">
-      <h2>⚠️ Warning ⚠️</h2>
-      <p>Due to a spike in malicious scripts, we ask you to think twice before executing anything. If something appears too good to be true, it most likely is. Always test on an alt!</p>
-      <button id="ok-button" class="button">Okay</button>
-    </div>
-  </div>
   <main class="container">
-    <div class="powered-by">Powered by <a href="https://scriptblox.com" target="_blank">scriptblox.com</a></div>
+    <div class="powered-by">Made by @danlacho | Powered by <a href="https://scriptblox.com" target="_blank">scriptblox.com</a></div>
     <section class="search-section">
       <form id="search-form" class="search-form">
         <div class="form-group">
@@ -55,23 +97,6 @@
   </main>
   <script src="script.js"></script>
   <script>
-    // Check if the warning has been shown before
-    if (!localStorage.getItem('warningShown')) {
-      document.getElementById('warning-modal').style.display = 'flex'; // Show the modal
-    }
-
-    // Add event listener to the OK button
-    document.getElementById('ok-button').addEventListener('click', function() {
-      // Apply fade-out animation
-      document.getElementById('warning-modal').style.animation = 'fadeOut 0.5s forwards'; // Start fade-out
-
-      // Wait for the animation to finish before hiding the modal
-      setTimeout(function() {
-        document.getElementById('warning-modal').style.display = 'none'; // Hide the modal
-      }, 500); // Match the duration of the fade-out animation
-      localStorage.setItem('warningShown', 'true'); // Set item in local storage
-    });
-
     // Load More button functionality
     document.getElementById('load-more').addEventListener('click', function() {
       // Show loading message
@@ -85,23 +110,22 @@
         document.getElementById('loading-message').style.display = 'none';
         document.getElementById('load-more').style.display = 'block'; // Show the Load More button again
       }, 2000); // Simulate a 2-second loading time
-
-
-      function checkScreenSize() {
-    const poweredBy = document.querySelector('.powered-by');
-    if (window.innerWidth <= 600) {
-        poweredBy.classList.add('hide'); // Add the hide class on small screens
-    } else {
-        poweredBy.classList.remove('hide'); // Remove the hide class on larger screens
-    }
-}
-
-// Initial check
-checkScreenSize();
-
-// Add event listener for screen resize
-window.addEventListener('resize', checkScreenSize);
     });
+
+    function checkScreenSize() {
+      const poweredBy = document.querySelector('.powered-by');
+      if (window.innerWidth <= 600) {
+          poweredBy.classList.add('hide'); // Add the hide class on small screens
+      } else {
+          poweredBy.classList.remove('hide'); // Remove the hide class on larger screens
+      }
+    }
+
+    // Initial check
+    checkScreenSize();
+
+    // Add event listener for screen resize
+    window.addEventListener('resize', checkScreenSize);
   </script>
 </body>
 </html>
